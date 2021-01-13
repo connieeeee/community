@@ -29,7 +29,7 @@ public class MemberController {
 	public String regi() {
 		return "regi.tiles";
 	}
-	@RequestMapping(value = "login", method=RequestMethod.GET)
+	@RequestMapping(value = "home", method=RequestMethod.GET)
 	public String login() {
 		return "login.tiles";
 	}
@@ -86,17 +86,17 @@ public class MemberController {
 		return o + "";
 	}
 	
-	@RequestMapping(value = "main",method= {RequestMethod.POST, RequestMethod.GET})
-	public String main(Model model, HttpServletRequest req) throws Exception{
-	
-		req.getSession().setAttribute("login", "aaa");
-		
-		String user = (String)req.getSession().getAttribute("login");
-		
-		model.addAttribute("id", user);
-		return "main.tiles";
-	}
-	
+	/*
+	 * @RequestMapping(value = "main",method= {RequestMethod.POST,
+	 * RequestMethod.GET}) public String main(Model model, HttpServletRequest req)
+	 * throws Exception{
+	 * 
+	 * req.getSession().setAttribute("login", "aaa");
+	 * 
+	 * String user = (String)req.getSession().getAttribute("login");
+	 * 
+	 * model.addAttribute("id", user); return "main.tiles"; }
+	 */
 	
 }
 
