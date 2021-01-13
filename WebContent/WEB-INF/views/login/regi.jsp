@@ -1,203 +1,306 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<fmt:requestEncoding value="utf-8"/>      
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
-
-<!-- cookie -->
-<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
-
-<style type="text/css">
-#login_wrap {
-	margin:10px;
-}
-#login_wrap th {
-	font-weight:bold;
-}
-#main_wrap { 
-	width:800px; 
-	margin-left:auto; 
-	margin-right:auto; padding:0px; 
-}			
-#content_wrap { 
-	width: 100%; 
-	height: 500px; 
-	background-image:url("image/backa.jpg"); 
-	background-repeat:no-repeat; 
-	background-position:top center;  
-}
-			
-.login_title_warp {
-	width:500px; 
-	color:#FFFFFF; 
-	text-align:center; 
-	background-color:#3e5fba; 
-	border:solid 1px #EFEFEF; 
-	font-weight:bold; 
-	height:60px;
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.input {
+	position: relative;
 }
 
-/* table셋팅 */
-.content_table { width:98%; border-bottom:1px solid #EFEFEF; border-right:1px solid #EFEFEF; border-collapse:collapse; margin-left:auto; margin-right:auto;  clear:both; }
-.content_table td, .content_table th { text-align:center; border-top:1px solid #EFEFEF; border-left:1px solid #EFEFEF; padding:0.3em; }
-.content_table th { background-color:#4D6BB3; color:#FFFFFF; line-height: 1.7em; font-weight:normal;}
-.content_table td { padding-left:5px; text-align:left; line-height: 1.7em; }
-.content_table td.contents { width:100%; height:400px; overflow:auto; }
-.content_table th, .content_table td { vertical-align:middle; }
-
-.content_table select { height:19px; border:#CCCCCC solid 1px; vertical-align:middle; line-height: 1.8em; padding-left:0px; }
-.content_table select option { margin-right:10px; }
-
+.input .eyes {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto 2px;
+	height: 30px;
+	font-size: 22px;
+	cursor: pointer;
+}
 </style>
 
-</head>
-<body>
-
-<div id="main_wrap">
-	<div id="middle_wrap">
-		<div id="content_wrap">
-			
-			<div style="width: 502px; height: 166px; margin-left: auto; margin-right: auto;
-						position: relative; top: 100px;">
-								
-			<div class="login_title_warp">
-				<div style="margin-top: 15px">
-					<h2>회원가입</h2>
-				</div>			
-			</div>
-			
-			<div id="login_wrap">
-				<form action="" method="post" id="_frmForm" name="frmForm">
-				
-				<table class="content_table" style="width:75%">
-				<colgroup>
-					<col style="width:30%">
-					<col style="width:70%">
-				</colgroup>
-				
-				<tr>
-					<th>아이디 첵크</th>
-					<td>
-						<input type="text" name="sid" id="_id" size="30">										
-						<a href="#none" id="_btnGetId" title="id첵크">
-							<img alt="" src="./image/idcheck.png">
-						</a>
-						<div id="_rgetid"></div>						
-					</td>				
-				</tr>
-				
-				<tr>
-					<th>아이디</th>
-					<td>
-						<input type="text" name="id" id="_userid" size="30" readonly="readonly">
-					</td>
-				</tr>
-				
-				<tr>
-					<th>패스워드</th>
-					<td>
-						<input type="text" name="pwd" id="_pwd" size="30">
-					</td>
-				</tr>
-				
-				<tr>
-					<th>이름</th>
-					<td>
-						<input type="text" name="name" id="_name" size="30">
-					</td>
-				</tr>
-				
-				<tr>
-					<th>이메일</th>
-					<td>
-						<input type="text" name="email" id="_email" size="30">
-					</td>
-				</tr>
-				
-				<tr>
-					<td colspan="2" style="height: 50px; text-align: center;">
-					
-					<a href="#none" id="_btnRegi" title="회원가입">
-						<img alt="" src="./image/regi.jpg">
-					</a>
-					
-					</td>
-				</tr>
-				</table>	
-				</form>	
-			</div>
-			</div>		
-		</div>	
-	</div>
+<div align='center'>
+	<form action="regiAf" method="post" name="regeister_member"
+		id="regeform">
+		<table width="800">
+			<tr height="40">
+				<td align="center"><b>[회원가입]</b></td>
+			</tr>
+		</table>
+		<table width="700" height="600" cellpadding="0"
+			style="border-collapse: collapse; font-size: 9pt;">
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">회원 ID</td>
+				<td><input type="text" id="userid" name="userid" /> &nbsp; <a
+					href="javascript:id_check()">[ID 중복 검사]</a> <br> <span
+					id="checkID"></span></td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">비밀번호</td>
+				<td>
+					<div id="password" class="input password">
+						<input type="password" name="userpw" id="userpw" />
+					</div> <a href="javascript:show_pwd()"><i id="eyes"
+						class="fas fa-eye"></i></a>
+				</td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">대 표 자 명</td>
+				<td><input type="text" id="username" name="username" maxlength="4" /></td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">회 사 이 름</td>
+				<td><input type="text" id="companyName" name="companyName" /></td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">사업자번호</td>
+				<td><input type="text" id="comNum1" name="comNum1" size="3" maxlength="3"
+					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />-
+					<input type="text" id="comNum2" name="comNum2" size="2" maxlength="2"
+					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />-
+					<input type="text" id="comNum3" name="comNum3" size="5" maxlength="5"
+					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+				</td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">업태</td>
+				<td><input type="text" id="business_condition" name="business_condition" /></td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">종목</td>
+				<td><input type="text" id="business_kind" name="business_kind" /></td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">이메일</td>
+				<td><input type="email" id="useremail" name="useremail" /></td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">전화번호</td>
+				<td><select name="tel1" id="tel1">
+						<option value="02">02</option>
+						<option value="031">031</option>
+						<option value="033">033</option>
+						<option value="043">043</option>
+						<option value="041">041</option>
+						<option value="054">054</option>
+						<option value="055">055</option>
+						<option value="063">063</option>
+						<option value="061">061</option>
+						<option value="064">064</option>
+						<option value="070">070</option>
+				</select> <input type="tel" id="tel2" name="tel2" size="4" maxlength="4"
+					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />-
+					<input type="tel" id="tel3" name="tel3" size="4" maxlength="4"
+					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+				</td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr class="register" height="30">
+				<td width="5%" align="center">*</td>
+				<td width="15%">핸드폰번호</td>
+				<td><input type="tel" id="phone1" name="phone1" size="4" maxlength="3"
+					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />-
+					<input type="tel" id="phone2" name="phone2" size="4" maxlength="4"
+					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />-
+					<input type="tel" id="phone3" name="phone3" size="4" maxlength="4"
+					onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
+				</td>
+			</tr>
+			<tr height="7">
+				<td colspan="3"><hr /></td>
+			</tr>
+			<tr>
+				<td width="5%" align="center">*</td>
+				<td width="15%">주 소</td>
+				<td><input type="text" size="10" name="postNum" id="postNum"
+					placeholder="우편번호" readonly="readonly" onclick="DaumPostcode()" />
+					<input type="button" name="searchAddr" onclick="DaumPostcode()"
+					value="우편번호 찾기" /><br />
+				<br /> <input type="text" size="60" name="roadAddress"
+					id="roadAddress" placeholder="도로명주소" readonly="readonly"
+					onclick="DaumPostcode()" /> <br />
+				<br /> <input type="text" name="wAddress" id="wAddress"
+					placeholder="상세주소" size="60" /></td>
+			</tr>
+		</table>
+		<br />
+		<table>
+			<tr height="40">
+				<td><input type="button" value="돌아가기" onclick="goBack();" /> <input
+					type="button" value="회원가입" onclick="check_form();" /></td>
+			</tr>
+		</table>
+	</form>
 </div>
-
 <script type="text/javascript">
-$("#_btnRegi").click(function(){
-	// 빈칸첵크
-	if( $("#_userid").val().trim() == "" ){
-		alert("id를 입력해 주십시오");
-		$("#_id").focus();
-	}else{
-		$("#_frmForm").attr("action", "regiAf.do").submit();
-	}	
-});
+	function show_pwd() {
+		$("#password").toggleClass("active");
 
-$("#_btnGetId").click(function(){
+		if ($("#password").hasClass("active") == true) {
+			$("#eyes").attr("class", "fas fa-eye-slash");
+			$('#pw').attr("type", "text");
+		} else {
+			$("#eyes").attr('class', "fas fa-eye");
+			$('#pw').attr('type', 'password');
+		}
+	};
 
-	if($("#_id").val().trim() == ""){
-		// alert("id를 입력해 주십시오");
-		$("#_id").val("");
-		$("#_id").focus();
-		$("#_userid").val("");
-		$("#_rgetid").html("아이디를 입력해 주십시오");		
-	}
-	else{
-
-		$.ajax({
-			url:"getId.do",
-			type:"post",
-			data:{ id:$("#_id").val() },
-			success:function( msg ){
-				if(msg == 'YES'){
-				//	alert("이 ID를 사용할 수 없습니다");
-					$("#_rgetid").html("사용할 수 없는 ID입니다");
-					$("#_rgetid").css("background-color", "#ff0000");
-					$("#_id").val();
-					$("#_userid").val();
+	function DaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+				// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var addr = ""; // 주소 변수
+				var extraAddr = ""; // 참고항목 변수
+				//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === "R") {
+					// 사용자가 도로명 주소를 선택했을 경우
+					addr = data.roadAddress;
+				} else {
+					// 사용자가 지번 주소를 선택했을 경우(J)
+					addr = data.jibunAddress;
 				}
-				else{
-					$("#_rgetid").html("이 ID는 사용할 수 있습니다");
-					$("#_rgetid").css("background-color", "#0000ff");
-					$("#_userid").val(  $("#_id").val().trim()  );
-				}
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.getElementById("postNum").value = data.zonecode;
+				document.getElementById("roadAddress").value = addr;
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById("wAddress").focus();
 			},
-			error:function(){
-				alert("error");
-			}			
-		});
-	}	
-});
+		}).open();
+	}
+var n = 0;
+	function id_check() {
+		n++;
+		if ($("#userid").val() == "" || $("#userid").val() == null
+				|| $("#userid").val().trim() == "")
+			$("#userid").focus();
 
+		else {
+			 $.ajax({
+				type:'POST',
+				url:'idcheck',
+				data:{
+					"id":form.userid.value
+				},
+				success:function(data){
+					console.log(data);
+					if(data == "NO"){
+						checkID.innerHTML="<strong style='color:red;'>중복된 아이디입니다.</strong>"
+						form.userid.value=""
+					}else{
+						checkID.innerHTML="<strong style='color:black'>사용가능 아이디입니다.</strong>"
+					}
+				},
+			}) 
+		}
+	}
 
+	var form = document.querySelector("#regeform");
+	
+	function check_form() {
+		if(n>0){
+			if (form.userid.value.trim() == "")
+				form.userid.focus()
+			else if (form.userpw.value.trim() == "")
+				form.userpw.focus()
+			else if (form.username.value.trim() == "")
+				form.username.focus()
+			else if (form.companyName.value.trim() == "")
+				form.companyName.focus()
+			else if (form.comNum1.value.trim() == ""
+					|| form.comNum2.value.trim() == ""
+					|| form.comNum3.value.trim() == "")
+				form.comNum1.focus();
+			else if (form.business_condition.value.trim() == "")
+				form.business_condition.focus();
+			else if (form.business_kind.value.trim() == "")
+				form.business_kind.focus()
+			else if (form.useremail.value.trim() == "")
+				form.useremail.focus()
+			else if (form.tel2.value.trim() == "" || form.tel3.value.trim() == "")
+				form.tel2.focus()
+			else if (form.phone1.value.trim() == ""
+					|| form.phone2.value.trim() == ""
+					|| form.phone3.value.trim() == "")
+				form.phone1.focus()
+			else if (form.postNum.value.trim() == "")
+				form.searchAddr.focus()
+			else if (form.wAddress.value.trim() == "")
+				form.wAddress.focus();
+			else{
+				var companyNumber = $("#comNum1").val() + "-" + $("#comNum2").val() + "-" + $("#comNum3").val();
+				var tel = $("#tel1").val()+ "-" + $("#tel2").val() + "-" + $("#tel3").val();
+				var phone = $("#phone1").val() + "-" + $("#phone2").val() + "-" + $("#phone3").val();
+				console.log(companyNumber);
+				console.log(tel);
+				console.log(phone);
+				$.ajax({
+					url:"regiAf",
+					type:"post",
+					data:{
+						"id":$("#userid").val(),
+						"pwd":$("#userpw").val(),
+						"companyName":$("#companyName").val(),
+						"ceo":$("#username").val(),
+						"companyNumber": companyNumber,
+						"businessCondition":$("#business_condition").val(),
+						"businessKind":$("#business_kind").val(),
+						"address1":$("#postNum").val(),
+						"address2":$("#roadAddress").val(),
+						"address3":$("#wAddress").val(),
+						"tel":tel,
+						"phone": phone,
+						"email":$("#useremail").val()
+						},
+					success:function(msg){
+	
+						if(msg == "complete"){
+						location.href="login";}
+						else{
+						alert("잠시 후 다시 시도해 주세요");
+							}
+					}
+					
+				})
+			}
+		}else{
+			alert("아이디 중복 확인 해주세요");
+			}
+	}
 </script>
-
-
-</body>
-</html>
-
-
-
-
-

@@ -31,13 +31,15 @@ public class LogAop {
 		HttpServletRequest request
 			= ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		
-		if(request != null) {			
+		 if(request != null) { 
 			HttpSession session = request.getSession();
-			MemberDto login = (MemberDto)session.getAttribute("login");
-			if(login == null) {
-				return "redirect:/sessionOut.do";
-			}
-		}		
+		 	MemberDto login = (MemberDto)session.getAttribute("login");
+		 	
+		 	if(login == null) { 
+			 return "redirect:/sessionOut.do";
+			 }
+		 }
+			
 		
 		try {						
 			System.out.println("loggerAOP:" + signatureStr + " 메소드가 실행되었습니다");
