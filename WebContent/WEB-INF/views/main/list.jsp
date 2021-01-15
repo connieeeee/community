@@ -53,12 +53,26 @@
 			</table>
 		</div>
 	</div>
+	<div class="container">
+		<div>
+			<select>
+				<option>선택하세요</option>
+			</select>
+		</div>
+		<div>
+			<input type="text">
+			<input type="button" value="검색">
+		</div>
+		<div>
+			<input type="button" value="작성" onclick="goPage(${cate_seq})">
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript">
 
 function goPage(num){
-	location.href="detail?post_seq="+num;
+	location.href="write?category_seq="+num;
 }
 
 </script>

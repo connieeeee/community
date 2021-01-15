@@ -9,7 +9,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import bit.com.a.dto.MemberDto;
 //import org.springframework.beans.factory.annotation.Autowired;
 
 //import bit.com.a.service.BbsService;
@@ -30,7 +29,7 @@ public class LogAop {
 		// session check
 		HttpServletRequest request
 			= ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-		
+		/*
 		 if(request != null) { 
 			HttpSession session = request.getSession();
 		 	MemberDto login = (MemberDto)session.getAttribute("login");
@@ -39,7 +38,7 @@ public class LogAop {
 			 return "redirect:/sessionOut.do";
 			 }
 		 }
-			
+		*/
 		
 		try {						
 			System.out.println("loggerAOP:" + signatureStr + " 메소드가 실행되었습니다");

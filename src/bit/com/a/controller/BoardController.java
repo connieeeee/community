@@ -27,12 +27,22 @@ public class BoardController {
 		List<MainDto> post = service.get_board_post(category_seq);
 		
 		
+		model.addAttribute("cate_seq", category_seq);
 		model.addAttribute("list", list);
 		model.addAttribute("post", post);
 		
 		return "list.tiles";
 	}
 	
-	
+	@RequestMapping(value = "write",method= {RequestMethod.POST, RequestMethod.GET})
+	public String write(int category_seq, Model model) {
+		
+		List<MainDto> list = service.get_board_post(category_seq);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("name", list.get(0).getCategory_name());
+		
+		return "write.tiles";
+	}
 	
 }

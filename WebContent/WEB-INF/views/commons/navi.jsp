@@ -97,7 +97,6 @@ if(session.getAttribute("id")!=null){
 							<tbody>
 								<tr>
 									<td><input onclick="movePage(1);" type="button" class="category" value="거래처"></td>
-									<td><input onclick="movePage(1);" type="button" class="category" value="글작성"></td>
 								</tr>
 							</tbody>
 						</table>
