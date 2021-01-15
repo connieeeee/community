@@ -10,29 +10,29 @@
 <fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd HH:mm"/>
 
 <div class="container">
+	<div>
+		<h2><a href="#">${post.category_name }</a>
+			>
+			<a href="#">${post.board_name }</a>
+		</h2>
+	</div>
 	<div class="detail-tbl">
-		<table class="table">
-			<tr>
-				<td>${post.post_title }</td>
-				<td>조회수 </td>
-			</tr>
-			<tr>
-				<td>${post.user_nickname }</td>
-				<td>${resultRegDt}</td>
-			</tr>
-			<tr>
-				<td colspan="2">${post.post_content }</td>
-			</tr>
-			<tr style="text-align: center;">
-				<td colspan="2">
+		<div class="table">
+				<div>${post.post_title }</div>
+				<div>조회수 </div>
+				<div>${post.user_nickname }</div>
+				<div>${resultRegDt}</div>
+				<div colspan="2">${post.post_content }</div>
+			<div style="text-align: center;">
+				<div colspan="2">
 					<a href="#">
 						<i class="far fa-thumbs-up"></i>
 					</a>
 					<a href="#">
 						<i class="far fa-thumbs-down"></i>
 					</a>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

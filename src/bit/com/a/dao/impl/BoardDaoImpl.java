@@ -1,0 +1,32 @@
+package bit.com.a.dao.impl;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import bit.com.a.dao.BoardDao;
+import bit.com.a.dto.BoardDto;
+import bit.com.a.dto.MainDto;
+@Repository
+public class BoardDaoImpl implements BoardDao {
+
+	@Autowired
+	SqlSession session;
+	
+	String ns = "board.";
+	
+	@Override
+	public List<BoardDto> get_board_list(int category_seq) {
+		List<BoardDto> list = session.selectList(ns + "get_board_list", category_seq);
+		return list;
+	}
+
+	@Override
+	public List<MainDto> get_board_post(int category_seq) {
+		List<MainDto> list = session.selectList(ns + "get_board_post", category_seq);
+		return list;
+	}
+
+}

@@ -25,10 +25,10 @@
 	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
 </definition>
 
-<definition name="product.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+<definition name="list.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
 	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
 	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
-	<put-attribute name="main" value="/WEB-INF/views/main/product.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/main/list.jsp"/>	
 	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
 </definition>
 

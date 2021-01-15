@@ -97,14 +97,7 @@ if(session.getAttribute("id")!=null){
 							<tbody>
 								<tr>
 									<td><input onclick="movePage(1);" type="button" class="category" value="거래처"></td>
-	
-									<td><input onclick="movePage(2);" type="button" class="category" value="품목 관리"></td>
-	
-									<td><input onclick="movePage(3);" type="button" class="category" value="거래 원장"></td>
-	
-									<td><input onclick="movePage(4);" type="button" class="category" value="거래 전표"></td>
-	
-									<td><input onclick="movePage(5);" type="button" class="category" value="총매출"></td>
+									<td><input onclick="movePage(1);" type="button" class="category" value="글작성"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -116,9 +109,9 @@ if(session.getAttribute("id")!=null){
 		<script type="text/javascript">
 			function movePage(Num){
 				if(Num==1){
-					location.href = "buyer?id="+$("#id").val();
+					location.href = "list?category_seq="+"1";
 				}else if(Num==2){
-					location.href = 'product?id='+$("#id").val();
+					location.href = 'write';
 				}else if(Num==3){
 					location.href = 'tradebook?id='+$("#id").val();
 				}else if(Num==4){

@@ -2,10 +2,11 @@ package bit.com.a.dto;
 
 import java.io.Serializable;
 
-public class PostDto implements Serializable {
+public class MainDto implements Serializable {
 
 	private int post_seq;
 	private int board_seq;
+	private int category_seq;
 	private int user_seq;
 	private String post_title;
 	private String post_content;
@@ -17,10 +18,10 @@ public class PostDto implements Serializable {
 	private String board_name;
 	
 	
-	public PostDto() {}
+	public MainDto() {}
 
 
-	public PostDto(int post_seq, int board_seq, int user_seq, String post_title, String post_content, String post_image,
+	public MainDto(int post_seq, int board_seq, int user_seq, String post_title, String post_content, String post_image,
 			String wdate, String category_name, String user_nickname, int delete, String board_name) {
 		super();
 		this.post_seq = post_seq;
@@ -37,7 +38,7 @@ public class PostDto implements Serializable {
 	}
 
 
-	public PostDto(int board_seq, int post_seq, String user_nickname, String post_title, int delete, String wdate) {
+	public MainDto(int board_seq, int post_seq, String user_nickname, String post_title, int delete, String wdate) {
 		super();
 		this.board_seq = board_seq;
 		this.post_seq = post_seq;
@@ -47,7 +48,7 @@ public class PostDto implements Serializable {
 		this.wdate = wdate;
 	}
 
-	public PostDto(int user_seq, String user_nickname, String post_title, String post_content, String post_image) {
+	public MainDto(int user_seq, String user_nickname, String post_title, String post_content, String post_image) {
 		super();
 		this.user_seq = user_seq;
 		this.user_nickname = user_nickname;

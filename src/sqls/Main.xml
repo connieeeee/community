@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="post">
+<mapper namespace="main">
 
-<select id="get_all_post" resultType="bit.com.a.dto.PostDto">
+<select id="get_all_post" resultType="bit.com.a.dto.MainDto">
 	SELECT P.POST_SEQ, B.BOARD_SEQ, P.USER_SEQ, P.POST_TITLE,
 	        P.POST_CONTENT, P.POST_IMAGE, P.WDATE, BC.CATEGORY_NAME,
 		      UT.USER_NICKNAME, P.POST_DELETE, B.BOARD_NAME
@@ -15,7 +15,7 @@
 	ORDER BY P.WDATE DESC
 </select>
 
-<select id="get_post_by_cate" resultType="bit.com.a.dto.PostDto">
+<select id="get_post_by_cate" resultType="bit.com.a.dto.MainDto">
 	SELECT P.POST_SEQ, B.BOARD_SEQ, P.USER_SEQ, P.POST_TITLE,
 	        P.POST_CONTENT, P.POST_IMAGE, P.WDATE, B.CATEGORY_SEQ, B.BOARD_NAME,
 		        B.BOARD_INFORM, B.BOARD_CONFIRM, B.BOARD_DELETE, BC.CATEGORY_NAME
@@ -25,7 +25,7 @@
 	ORDER BY P.WDATE DESC
 </select>
 
-<select id="get_post" resultType="bit.com.a.dto.PostDto" parameterType="java.lang.Integer">
+<select id="get_post" resultType="bit.com.a.dto.MainDto" parameterType="java.lang.Integer">
 	SELECT P.POST_SEQ, B.BOARD_SEQ, P.USER_SEQ, P.POST_TITLE,
 	        P.POST_CONTENT, P.POST_IMAGE, P.WDATE, BC.CATEGORY_NAME,
 		      UT.USER_NICKNAME, P.POST_DELETE, B.BOARD_NAME
@@ -34,4 +34,5 @@
 	AND B.CATEGORY_SEQ= BC.CATEGORY_SEQ
 	AND P.POST_SEQ = ${post_seq}
 </select>
+
 </mapper>
