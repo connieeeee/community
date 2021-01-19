@@ -39,7 +39,7 @@
 							</td>
 							<td>${list.user_nickname}</td>
 							<td>${list.wdate}</td>
-							<td>0</td>
+							<td>${list.readcount }</td>
 						</c:forEach>
 					</c:if>
 					<c:if test="${empty list}">

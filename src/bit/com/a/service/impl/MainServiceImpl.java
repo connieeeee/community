@@ -20,9 +20,4 @@ public class MainServiceImpl implements MainService {
 		return dao.get_all_post();
 	}
 
-	@Override
-	public MainDto get_post(int post_seq) {
-		return dao.get_post(post_seq);
-	}
-
 }

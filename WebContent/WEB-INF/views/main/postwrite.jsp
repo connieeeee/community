@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
 
 <div class="container">
 	<div>
@@ -16,10 +17,10 @@
 						<option value="${l.board_seq }">${l.board_name }</option>					
 					</c:forEach>
 				</select>
-				<input type="text" name="post_title">
+				<input type="text" name="post_title" placeholder="제목">
 			</div>			
-			<div colspan="2">
-				<textarea rows="5" cols="8" name="post_content"></textarea>
+			<div id="editor">
+				<textarea id="editor" rows="5" cols="8" name="post_content"></textarea>
 			</div>
 		</div>
 	</div>
@@ -28,6 +29,12 @@
 		<input type="button" value="저장">
 	</div>
 </div>
-	<script type="text/javascript">
-		
-	</script>
+
+	
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

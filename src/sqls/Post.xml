@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="post">
+	<select id="get_post" resultType="bit.com.a.dto.PostDto" parameterType="java.lang.Integer">
+		SELECT P.POST_SEQ, B.BOARD_SEQ,
+				B.CATEGORY_SEQ, P.USER_SEQ,
+				UT.USER_NICKNAME, P.POST_TITLE, 
+				P.POST_CONTENT, P.POST_IMAGE,
+				P.OLD_FILENAME, P.WDATE, 
+				BC.CATEGORY_NAME, B.BOARD_NAME,  
+				P.POST_DELETE, P.READCOUNT
+		FROM POST P, BOARD B, BOARD_CATEGORY BC, USER_TABLE UT
+		WHERE P.BOARD_SEQ = B.BOARD_SEQ
+		AND B.CATEGORY_SEQ= BC.CATEGORY_SEQ
+		AND P.POST_SEQ = ${post_seq}
+	</select>
+	
+  	<update id="readcount" parameterType="int">
+  		UPDATE POST SET
+  		READCOUNT = READCOUNT + 1
+  		WHERE POST_SEQ = #{post_seq }
+  	</update>
+</mapper>

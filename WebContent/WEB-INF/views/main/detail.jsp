@@ -18,13 +18,18 @@
 	</div>
 	<div class="detail-tbl">
 		<div class="table">
-				<div>${post.post_title }</div>
-				<div>조회수 </div>
-				<div>${post.user_nickname }</div>
-				<div>${resultRegDt}</div>
-				<div colspan="2">${post.post_content }</div>
+			<div class="1-line">
+				<span>${post.post_title }</span>
+				<span>${resultRegDt}</span>
+			</div>
+			<div class="2-line">
+				<span>${post.user_nickname }</span>
+				<span>${post.readcount } </span>
+			</div>
+			<div colspan="2">${post.post_content }</div>
+			
 			<div style="text-align: center;">
-				<div colspan="2">
+				<div>
 					<a href="#">
 						<i class="far fa-thumbs-up"></i>
 					</a>

@@ -26,14 +26,5 @@ public class MainController {
 		return "main.tiles";
 	}
 
-	@RequestMapping(value = "detail",method= {RequestMethod.POST, RequestMethod.GET})
-	public String detail(int post_seq, Model model) {
-		
-		MainDto dto = service.get_post(post_seq);
-		
-		model.addAttribute("post", dto);
-		
-		return "detail.tiles";
-	}
 
 }

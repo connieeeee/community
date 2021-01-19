@@ -16,13 +16,15 @@ public class MainDto implements Serializable {
 	private String user_nickname;
 	private int delete;
 	private String board_name;
+	private int readcount;
+	
 	
 	
 	public MainDto() {}
 
 
 	public MainDto(int post_seq, int board_seq, int user_seq, String post_title, String post_content, String post_image,
-			String wdate, String category_name, String user_nickname, int delete, String board_name) {
+			String wdate, String category_name, String user_nickname, int delete, String board_name, int readcount) {
 		super();
 		this.post_seq = post_seq;
 		this.board_seq = board_seq;
@@ -35,6 +37,7 @@ public class MainDto implements Serializable {
 		this.user_nickname = user_nickname;
 		this.delete = delete;
 		this.board_name = board_name;
+		this.readcount = readcount;
 	}
 
 
@@ -143,6 +146,26 @@ public class MainDto implements Serializable {
 
 	public void setBoard_name(String board_name) {
 		this.board_name = board_name;
+	}
+
+
+	public int getCategory_seq() {
+		return category_seq;
+	}
+
+
+	public void setCategory_seq(int category_seq) {
+		this.category_seq = category_seq;
+	}
+
+
+	public int getReadcount() {
+		return readcount;
+	}
+
+
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
 	}
 	
 	

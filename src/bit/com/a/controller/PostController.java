@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import bit.com.a.dto.dto;
+import bit.com.a.dto.MainDto;
 import bit.com.a.dto.PostDto;
 import bit.com.a.service.PostService;
 import bit.com.a.util.PdsUtil;
@@ -24,6 +25,18 @@ public class PostController {
 	@Autowired
 	PostService service;
 	
+
+	@RequestMapping(value = "detail",method= {RequestMethod.POST, RequestMethod.GET})
+	public String detail(int post_seq, Model model) throws Exception {
+		
+		PostDto dto = service.get_post(post_seq);
+		
+		model.addAttribute("post", dto);
+		
+		return "detail.tiles";
+	}
+	
+	/*
 	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
 	public String pdsupload(PostDto dto , @RequestParam(value = "fileload", required = false)MultipartFile fileload, 
 					HttpServletRequest req) {
@@ -62,5 +75,5 @@ public class PostController {
 		}	 
 		
 		return "redirect:/pdslist.do";		
-	}
+	}*/
 }

@@ -24,9 +24,4 @@ public class MainDaoImpl implements MainDao {
 	}
 
 
-	@Override
-	public MainDto get_post(int post_seq) {
-		return session.selectOne(ns + "get_post", post_seq);
-	}
-
 }

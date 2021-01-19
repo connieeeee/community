@@ -23,12 +23,14 @@ public class PostDto implements Serializable {
 	private String board_name;
 	
 	private int delete;
+
+	private int readcount;
 	
 	public PostDto() {}
 
 	public PostDto(int post_seq, int board_seq, int category_seq, int user_seq, String user_nickname, String post_title,
 			String post_content, String post_image, String old_filename, String wdate, String category_name,
-			String board_name, int delete) {
+			String board_name, int delete, int readcount) {
 		super();
 		this.post_seq = post_seq;
 		this.board_seq = board_seq;
@@ -43,6 +45,7 @@ public class PostDto implements Serializable {
 		this.category_name = category_name;
 		this.board_name = board_name;
 		this.delete = delete;
+		this.readcount = readcount;
 	}
 
 	public int getPost_seq() {
@@ -147,6 +150,14 @@ public class PostDto implements Serializable {
 
 	public void setDelete(int delete) {
 		this.delete = delete;
+	}
+
+	public int getReadcount() {
+		return readcount;
+	}
+
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
 	}
 	
 	

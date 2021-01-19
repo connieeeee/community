@@ -34,11 +34,11 @@
 								<td>${i.count}</td>
 								<td>${list.board_name}</td>
 								<td>
-									<a href="#" onclick="goPage(${list.post_seq})">${list.post_title}</a>
+									<a href="#" onclick="goDetail(${list.post_seq})">${list.post_title}</a>
 								</td>
 								<td>${list.user_nickname}</td>
 								<td>${resultRegDt }</td>
-								<td>0</td>
+								<td>${list.readcount }</td>
 							</c:forEach>
 						</c:if>
 						<c:if test="${empty post}">
@@ -73,6 +73,10 @@
 
 function goPage(num){
 	location.href="write?category_seq="+num;
+}
+
+function goDetail(num){
+	location.href="detail?post_seq="+num;
 }
 
 </script>
