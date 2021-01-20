@@ -61,7 +61,7 @@
 		</div>
 		<div>
 			<input type="text">
-			<input type="button" value="검색">
+			<input type="button" class="btn btn-primary" value="검색">
 		</div>
 		<div>
 			<input type="button" value="작성" onclick="goPage(${cate_seq})">

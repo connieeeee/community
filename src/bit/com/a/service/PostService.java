@@ -1,5 +1,10 @@
 package bit.com.a.service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import bit.com.a.dto.MainDto;
 import bit.com.a.dto.PostDto;
 
