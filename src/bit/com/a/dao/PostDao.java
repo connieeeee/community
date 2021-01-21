@@ -11,4 +11,6 @@ public interface PostDao {
 	// 게시판 조회수
 	public void readcount(int post_seq) throws Exception;
 	
+	public boolean writePost(PostDto dto) throws Exception;
+	
 }

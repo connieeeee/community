@@ -27,4 +27,10 @@ public class PostDaoImpl implements PostDao {
 		session.update(ns + "readcount", post_seq);
 	}
 
+	@Override
+	public boolean writePost(PostDto dto) throws Exception {
+		int n = session.insert(ns + "writePost", dto);
+		return n>0?true:false;
+	}
+
 }

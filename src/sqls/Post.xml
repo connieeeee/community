@@ -23,4 +23,11 @@
   		READCOUNT = READCOUNT + 1
   		WHERE POST_SEQ = #{post_seq }
   	</update>
+  	
+  	<insert id="writePost" parameterType="bit.com.a.dto.PostDto">
+	  	INSERT INTO POST(POST_SEQ, BOARD_SEQ, USER_SEQ, POST_TITLE, POST_CONTENT,
+	  					POST_IMAGE, POST_DELETE, WDATE, OLD_FILENAME)
+		VALUES(POST_SEQ.NEXTVAL, #{board_seq}, #{user_seq}, #{post_title}, #{post_content},
+				#{post_image}, 0, SYSDATE, #{old_filename})
+  	</insert>
 </mapper>

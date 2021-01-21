@@ -31,4 +31,9 @@ public class PostServiceImpl implements PostService {
 		return dao.get_post(post_seq);
 	}
 
+	@Override
+	public boolean writePost(PostDto dto) throws Exception {
+		return dao.writePost(dto);
+	}
+
 }

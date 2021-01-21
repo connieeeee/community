@@ -46,46 +46,49 @@ public class PostController {
 		return "detail.tiles";
 	}
 	
-/*
-	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
-	public String pdsupload(PostDto dto , @RequestParam(value = "fileload", required = false)MultipartFile fileload, 
-					HttpServletRequest req) {
+	@RequestMapping(value = "writeAf", method = {RequestMethod.GET, RequestMethod.POST})
+	public String writeAf(PostDto dto, Model m, @RequestParam(value = "fileload", required = false)MultipartFile fileload, 
+			HttpServletRequest req) throws Exception {
+		
+		System.out.println("dto: " + dto.getBoard_seq());
 		
 		// filename 취득
 		String filename = fileload.getOriginalFilename();
-		dto.setOldfilename(filename);
+		dto.setOld_filename(filename);
 		
 		// upload 경로 설정
 		// server
 		String fupload = req.getServletContext().getRealPath("/upload");
 		
 		// 폴더
-	//	String fupload = "d:\\tmp";
+//		String fupload = "C:\\AA\\tmp";
 		
-		System.out.println("fupload:" + fupload);
+		System.out.println("fupload: " + fupload);
 		
-		// file명을 취득
-		String f = dto.getOldfilename();
-		String newfilename = PdsUtil.getNewFileName( f );	// 324324324324.txt
+		// file명 취득
+		String f = dto.getOld_filename();
+		String newfilename = PdsUtil.getNewFileName(f);
 		
-		dto.setFilename(newfilename);
+		dto.setPost_image(newfilename);
+		dto.setUser_seq(1);
 		
 		File file = new File(fupload + "/" + newfilename);
-				
+		
 		try {
 			// 실제로 파일이 업로드되는 부분
 			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
 			
 			// db에 저장
-			service.uploadPds(dto);
-			
+			service.writePost(dto);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	 
+		}
+				
+		m.addAttribute("category_seq", dto.getCategory_seq());
 		
-		return "redirect:/pdslist.do";		
-	}*/
+		return "redirect:/list";
+	}
+
 
 
 }

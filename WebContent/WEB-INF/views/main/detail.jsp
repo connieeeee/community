@@ -26,7 +26,11 @@
 				<span>${post.user_nickname }</span>
 				<span>${post.readcount } </span>
 			</div>
-			<div colspan="2">${post.post_content }</div>
+			<div colspan="2">
+			${post.post_content }
+			<img alt="/" src="./resources/upload/${post.post_image }">
+
+			</div>
 			
 			<div style="text-align: center;">
 				<div>

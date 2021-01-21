@@ -13,4 +13,6 @@ public interface PostService {
 
 	public PostDto get_post(int post_seq) throws Exception;
 
+	public boolean writePost (PostDto dto) throws Exception;
+
 }

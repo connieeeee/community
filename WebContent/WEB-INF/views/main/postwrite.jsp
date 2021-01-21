@@ -16,10 +16,11 @@
 	</div>
 	<div class="write-tbl">
 		<div class="table">
-			<form action="/" method="post">
+			<form id="write_frm" method="post"  enctype="multipart/form-data">
+				<input type="hidden" value="${category_seq }" name="category_seq">
 				<div style="position:relative ;height: 38px">
-					<select style="width: 12%; float: left;">
-						<option value="null">카테고리</option>
+					<select style="width: 12%; float: left;" name="board_seq">
+						<option>카테고리</option>
 						<c:forEach items="${list }" var="l">
 							<option value="${l.board_seq }">${l.board_name }</option>					
 						</c:forEach>
@@ -27,22 +28,29 @@
 					<input type="text" class="form-control" name="post_title" placeholder="제목" style="width: 87%; float: right;">
 				</div>			
 				<div>
-					<textarea id="summernote" rows="5" cols="8" name="editordata">
+					<textarea id="summernote" rows="5" cols="8" name="post_content">
 						<p id="image_container"></p>
 					</textarea>
 				</div>
 				<div>
-					<input type="file" id="file" accept="image/*" name="image" onchange="setThumbnail(event);">
+					<input type="file" accept="image/*" name="fileload" onchange="setThumbnail(event);">
 				</div>
 				<div>
 					<input type="button" class="note-btn btn btn-default note-btn-underline" value="취소">
-					<input type="submit" class="note-btn btn btn-default note-btn-underline" value="저장">
+					<input type="submit" id="submit" class="note-btn btn btn-default note-btn-underline" value="저장">
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 <script> 
+
+$("#submit").click(function() {	
+
+	$("#write_frm").attr({ "target":"_self", "action":"writeAf" }).submit();	
+});
+
+/* 게시글에 사진 첨부 */
 function setThumbnail(event) { 
 	var reader = new FileReader(); 
 	reader.onload = function(event) { 
@@ -51,26 +59,23 @@ function setThumbnail(event) {
 		document.querySelector("p#image_container").appendChild(img); 
 		};
 		 reader.readAsDataURL(event.target.files[0]); 
-		}
- </script>
+}
 
 
- 
-
-<script>
-      $('#summernote').summernote({
-        tabsize: 2,
-        height: 400,
-        lang: 'ko-KR',
-        toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['view', ['fullscreen', 'codeview', 'help']]
-          ]
-      });
+/* 에디터 설정 */
+$('#summernote').summernote({
+	  tabsize: 2,
+	  height: 400,
+	  lang: 'ko-KR',
+	  toolbar: [
+	      ['style', ['style']],
+	      ['font', ['bold', 'underline', 'clear']],
+	      ['color', ['color']],
+	      ['para', ['ul', 'ol', 'paragraph']],
+	      ['table', ['table']],
+	      ['view', ['fullscreen', 'codeview', 'help']]
+	    ]
+});
 
 </script>
 

@@ -26,19 +26,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr style="text-align: center;">
 						<c:if test="${not empty post }">
 							<c:forEach  items="${post}" var="list" varStatus="i">
-								<fmt:parseDate var="parseRegDate" value="${list.wdate}" pattern="yyyy-MM-dd"/>
-								<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd"/>
-								<td>${i.count}</td>
-								<td>${list.board_name}</td>
-								<td>
-									<a href="#" onclick="goDetail(${list.post_seq})">${list.post_title}</a>
-								</td>
-								<td>${list.user_nickname}</td>
-								<td>${resultRegDt }</td>
-								<td>${list.readcount }</td>
+								<tr style="text-align: center;">
+									<fmt:parseDate var="parseRegDate" value="${list.wdate}" pattern="yyyy-MM-dd"/>
+									<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd"/>
+									<td>${i.count}</td>
+									<td>${list.board_name}</td>
+									<td>
+										<a href="#" onclick="goDetail(${list.post_seq})">${list.post_title}</a>
+									</td>
+									<td>${list.user_nickname}</td>
+									<td>${resultRegDt }</td>
+									<td>${list.readcount }</td>
+								</tr>
 							</c:forEach>
 						</c:if>
 						<c:if test="${empty post}">
@@ -48,7 +49,6 @@
 							</td>
 						</tr>
 					</c:if>
-					</tr>
 				</tbody>
 			</table>
 		</div>
