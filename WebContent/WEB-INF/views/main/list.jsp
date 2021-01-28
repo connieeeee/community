@@ -3,14 +3,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<style>
+.list-box{
+	border: 1px solid black;
+	max-width: 100%;
+}
+</style>
 
 <div class="container">
 	<div class="container">
-		<c:forEach items="${list }" var="n">
-			<span>
-				<a href="board?board_seq=${n.board_seq }">${n.board_name }</a>
-			</span>
-		</c:forEach>
+		<span id="more" style="CURSOR: hand" onclick="show_list()">
+			 <strong>></strong>목차보기
+		</span>
+		<div class="container list-box" id="story" style="display: none">
+			<c:forEach items="${list }" var="n">
+				<span>
+					<a href="board?board_seq=${n.board_seq }">${n.board_name }</a>
+				</span>
+			</c:forEach>
+		</div>
 	</div>
 	<div class="container">
 		<div class="container wrap-table-1">
@@ -70,6 +81,14 @@
 </div>
 
 <script type="text/javascript">
+function show_list(){
+	if(story.style.display=='none'){
+		story.style.display='';
+		more.innerText='>접기'
+	} else {
+		story.style.display='none';more.innerText='>펼치기'
+	}
+}
 
 function goPage(num){
 	location.href="write?category_seq="+num;

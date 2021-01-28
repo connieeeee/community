@@ -25,7 +25,7 @@ public class BoardController {
 	@RequestMapping(value = "list",method= {RequestMethod.POST, RequestMethod.GET})
 	public String list(int category_seq, Model model) {
 		
-		List<BoardDto> list = service.get_board_list(category_seq);
+		List<BoardDto> list = service.get_cate_list(category_seq);
 		List<MainDto> post = service.get_board_post(category_seq);
 		
 		
@@ -38,8 +38,13 @@ public class BoardController {
 	
 	@RequestMapping(value = "board",method= {RequestMethod.POST, RequestMethod.GET})
 	public String board(int board_seq, Model model) {
-			
-		
+				
+		List<MainDto> post = service.get_board_list(board_seq);
+		List<BoardDto> list = service.get_cate_list(post.get(0).getCategory_seq());
+
+		model.addAttribute("post", post);
+		model.addAttribute("list", list);
+				
 		return "list.tiles";
 	}
 }

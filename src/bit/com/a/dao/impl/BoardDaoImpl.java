@@ -18,14 +18,20 @@ public class BoardDaoImpl implements BoardDao {
 	String ns = "board.";
 	
 	@Override
-	public List<BoardDto> get_board_list(int category_seq) {
-		List<BoardDto> list = session.selectList(ns + "get_board_list", category_seq);
+	public List<BoardDto> get_cate_list(int category_seq) {
+		List<BoardDto> list = session.selectList(ns + "get_cate_list", category_seq);
 		return list;
 	}
 
 	@Override
 	public List<MainDto> get_board_post(int category_seq) {
 		List<MainDto> list = session.selectList(ns + "get_board_post", category_seq);
+		return list;
+	}
+
+	@Override
+	public List<MainDto> get_board_list(int board_seq) {
+		List<MainDto> list = session.selectList(ns + "get_board_list", board_seq);
 		return list;
 	}
 

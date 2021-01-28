@@ -16,12 +16,17 @@ public class BoardServiceImpl implements BoardService {
 	BoardDao dao;
 	
 	@Override
-	public List<BoardDto> get_board_list(int category_seq) {
-		return dao.get_board_list(category_seq);
+	public List<BoardDto> get_cate_list(int category_seq) {
+		return dao.get_cate_list(category_seq);
 	}
 
 	@Override
 	public List<MainDto> get_board_post(int category_seq) {
 		return dao.get_board_post(category_seq);
+	}
+
+	@Override
+	public List<MainDto> get_board_list(int board_seq) {
+		return dao.get_board_list(board_seq);
 	}
 }

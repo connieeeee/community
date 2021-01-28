@@ -7,7 +7,8 @@ import bit.com.a.dto.MainDto;
 
 public interface BoardService {
 
- 	List<BoardDto> get_board_list(int category_seq);
+ 	List<BoardDto> get_cate_list(int category_seq);
  	List<MainDto> get_board_post(int category_seq);
  	
+ 	List<MainDto> get_board_list(int board_seq);
 }

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="board">
-<select id="get_board_list" resultType="bit.com.a.dto.BoardDto" parameterType="java.lang.Integer">
+<select id="get_cate_list" resultType="bit.com.a.dto.BoardDto" parameterType="java.lang.Integer">
 	SELECT B.BOARD_SEQ,
 		   B.CATEGORY_SEQ,
 		   B.BOARD_INFORM,
@@ -47,6 +47,18 @@
 	WHERE P.BOARD_SEQ = B.BOARD_SEQ
 	AND B.CATEGORY_SEQ= BC.CATEGORY_SEQ
 	AND BC.CATEGORY_SEQ = #{category_seq }
+	ORDER BY P.WDATE DESC
+</select>
+
+<select id="get_board_list" resultType="bit.com.a.dto.MainDto" parameterType="java.lang.Integer">
+	SELECT P.POST_SEQ, B.BOARD_SEQ, P.USER_SEQ, P.POST_TITLE,
+	        P.POST_CONTENT, P.POST_IMAGE, P.WDATE, BC.CATEGORY_NAME,
+		      UT.USER_NICKNAME, P.POST_DELETE, B.BOARD_NAME, P.READCOUNT,
+		      	BC.CATEGORY_SEQ
+	FROM POST P, BOARD B, BOARD_CATEGORY BC, USER_TABLE UT
+	WHERE P.BOARD_SEQ = B.BOARD_SEQ
+	AND B.CATEGORY_SEQ= BC.CATEGORY_SEQ
+	AND B.BOARD_SEQ = #{board_seq }
 	ORDER BY P.WDATE DESC
 </select>
 
