@@ -96,7 +96,8 @@ if(session.getAttribute("id")!=null){
 						<table >
 							<tbody>
 								<tr>
-									<td><input onclick="movePage(1);" type="button" class="category" value="거래처"></td>
+									<td><input onclick="movePage(1);" type="button" class="category" value="패션"></td>
+									<td><input onclick="movePage(21);" type="button" class="category" value="연예"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -107,17 +108,7 @@ if(session.getAttribute("id")!=null){
 		</header>
 		<script type="text/javascript">
 			function movePage(Num){
-				if(Num==1){
-					location.href = "list?category_seq="+"1";
-				}else if(Num==2){
-					location.href = 'write';
-				}else if(Num==3){
-					location.href = 'tradebook?id='+$("#id").val();
-				}else if(Num==4){
-					location.href = 'orderbook?id='+$("#id").val();
-				}else if(Num==5){
-					location.href = 'total?id='+$("#id").val();
-				}	
+				location.href = "list?category_seq="+Num;
 			}
 		</script>
 

@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import bit.com.a.dto.BoardDto;
 import bit.com.a.dto.MainDto;
+import bit.com.a.dto.PostDto;
 import bit.com.a.service.BoardService;
 import bit.com.a.service.MainService;
+import bit.com.a.service.PostService;
 
 @Controller
 public class BoardController {
@@ -34,16 +36,10 @@ public class BoardController {
 		return "list.tiles";
 	}
 	
-	@RequestMapping(value = "write",method= {RequestMethod.POST, RequestMethod.GET})
-	public String write(int category_seq, Model model) {
+	@RequestMapping(value = "board",method= {RequestMethod.POST, RequestMethod.GET})
+	public String board(int board_seq, Model model) {
+			
 		
-		List<MainDto> list = service.get_board_post(category_seq);
-		
-		model.addAttribute("list", list);
-		model.addAttribute("name", list.get(0).getCategory_name());
-		model.addAttribute("category_seq", category_seq);
-		
-		return "write.tiles";
+		return "list.tiles";
 	}
-	
 }

@@ -4,30 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="post">
-	<select id="get_post" resultType="bit.com.a.dto.PostDto" parameterType="java.lang.Integer">
-		SELECT P.POST_SEQ, B.BOARD_SEQ,
-				B.CATEGORY_SEQ, P.USER_SEQ,
-				UT.USER_NICKNAME, P.POST_TITLE, 
-				P.POST_CONTENT, P.POST_IMAGE,
-				P.OLD_FILENAME, P.WDATE, 
-				BC.CATEGORY_NAME, B.BOARD_NAME,  
-				P.POST_DELETE, P.READCOUNT
-		FROM POST P, BOARD B, BOARD_CATEGORY BC, USER_TABLE UT
-		WHERE P.BOARD_SEQ = B.BOARD_SEQ
-		AND B.CATEGORY_SEQ= BC.CATEGORY_SEQ
-		AND P.POST_SEQ = ${post_seq}
-	</select>
-	
-  	<update id="readcount" parameterType="int">
-  		UPDATE POST SET
-  		READCOUNT = READCOUNT + 1
-  		WHERE POST_SEQ = #{post_seq }
-  	</update>
-  	
-  	<insert id="writePost" parameterType="bit.com.a.dto.PostDto">
-	  	INSERT INTO POST(POST_SEQ, BOARD_SEQ, USER_SEQ, POST_TITLE, POST_CONTENT,
-	  					POST_IMAGE, POST_DELETE, WDATE, OLD_FILENAME)
-		VALUES(POST_SEQ.NEXTVAL, #{board_seq}, #{user_seq}, #{post_title}, #{post_content},
-				#{post_image}, 0, SYSDATE, #{old_filename})
-  	</insert>
+<select id="get_post" resultType="bit.com.a.dto.PostDto" parameterType="java.lang.Integer">
+	SELECT P.POST_SEQ, B.BOARD_SEQ,
+			B.CATEGORY_SEQ, P.USER_SEQ,
+			UT.USER_NICKNAME, P.POST_TITLE, 
+			P.POST_CONTENT, P.POST_IMAGE,
+			P.OLD_FILENAME, P.WDATE, 
+			BC.CATEGORY_NAME, B.BOARD_NAME,  
+			P.POST_DELETE, P.READCOUNT
+	FROM POST P, BOARD B, BOARD_CATEGORY BC, USER_TABLE UT
+	WHERE P.BOARD_SEQ = B.BOARD_SEQ
+	AND B.CATEGORY_SEQ= BC.CATEGORY_SEQ
+	AND P.POST_SEQ = ${post_seq}
+</select>
+
+ 	<update id="readcount" parameterType="int">
+ 		UPDATE POST SET
+ 		READCOUNT = READCOUNT + 1
+ 		WHERE POST_SEQ = #{post_seq }
+ 	</update>
+ 	
+ 	<insert id="writePost" parameterType="bit.com.a.dto.PostDto">
+  	INSERT INTO POST(POST_SEQ, BOARD_SEQ, USER_SEQ, POST_TITLE, POST_CONTENT,
+  					POST_IMAGE, POST_DELETE, WDATE, OLD_FILENAME)
+	VALUES(POST_SEQ.NEXTVAL, #{board_seq}, #{user_seq}, #{post_title}, #{post_content},
+			#{post_image}, 0, SYSDATE, #{old_filename})
+ 	</insert>
+ 	
+ 	
+<select id="get_all_board_list" resultType="bit.com.a.dto.PostDto" parameterType="java.lang.Integer">
+	SELECT B.BOARD_SEQ, B.CATEGORY_SEQ, B.BOARD_NAME, BC.CATEGORY_NAME
+	FROM BOARD B, BOARD_CATEGORY BC
+	WHERE B.CATEGORY_SEQ = BC.CATEGORY_SEQ
+	AND BC.CATEGORY_SEQ = #{category_seq}
+</select>
+	  	
 </mapper>

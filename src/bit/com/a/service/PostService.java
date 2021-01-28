@@ -1,5 +1,7 @@
 package bit.com.a.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,4 +17,5 @@ public interface PostService {
 
 	public boolean writePost (PostDto dto) throws Exception;
 
+	public List<PostDto> get_all_board_list(int category_seq) throws Exception;
 }

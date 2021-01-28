@@ -2,6 +2,7 @@ package bit.com.a.service.impl;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,11 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public boolean writePost(PostDto dto) throws Exception {
 		return dao.writePost(dto);
+	}
+
+	@Override
+	public List<PostDto> get_all_board_list(int category_seq) throws Exception {
+		return dao.get_all_board_list(category_seq);
 	}
 
 }

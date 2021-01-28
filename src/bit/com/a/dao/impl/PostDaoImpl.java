@@ -1,5 +1,7 @@
 package bit.com.a.dao.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +33,11 @@ public class PostDaoImpl implements PostDao {
 	public boolean writePost(PostDto dto) throws Exception {
 		int n = session.insert(ns + "writePost", dto);
 		return n>0?true:false;
+	}
+
+	@Override
+	public List<PostDto> get_all_board_list(int category_seq) throws Exception {
+		return session.selectList(ns + "get_all_board_list", category_seq);
 	}
 
 }

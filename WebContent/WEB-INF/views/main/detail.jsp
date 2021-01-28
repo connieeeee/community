@@ -26,10 +26,11 @@
 				<span>${post.user_nickname }</span>
 				<span>${post.readcount } </span>
 			</div>
-			<div colspan="2">
+			<div>
 			${post.post_content }
-			<img alt="/" src="./resources/upload/${post.post_image }">
-
+			<c:if test="${not empty post.post_image }">
+				<img alt="" src="./resources/upload/${post.post_image }">
+			</c:if>
 			</div>
 			
 			<div style="text-align: center;">

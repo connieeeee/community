@@ -1,5 +1,7 @@
 package bit.com.a.dao;
 
+import java.util.List;
+
 import bit.com.a.dto.MainDto;
 import bit.com.a.dto.PostDto;
 
@@ -13,4 +15,5 @@ public interface PostDao {
 	
 	public boolean writePost(PostDto dto) throws Exception;
 	
+	public List<PostDto> get_all_board_list(int category_seq) throws Exception;
 }

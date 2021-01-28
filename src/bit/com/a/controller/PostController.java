@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +45,19 @@ public class PostController {
 		model.addAttribute("post", dto);
 		
 		return "detail.tiles";
+	}
+	
+	
+	@RequestMapping(value = "write",method= {RequestMethod.POST, RequestMethod.GET})
+	public String write(int category_seq, Model model) throws Exception {
+		
+		List<PostDto> list = service.get_all_board_list(category_seq);
+
+		model.addAttribute("list", list);
+		model.addAttribute("name", list.get(1).getCategory_name());
+		model.addAttribute("category_seq", category_seq);
+		
+		return "write.tiles";
 	}
 	
 	@RequestMapping(value = "writeAf", method = {RequestMethod.GET, RequestMethod.POST})
