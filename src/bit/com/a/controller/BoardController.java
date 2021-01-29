@@ -37,14 +37,28 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "board",method= {RequestMethod.POST, RequestMethod.GET})
-	public String board(int board_seq, Model model) {
+	public String board(int category_seq, int board_seq, Model model) {
 				
+		System.out.println(board_seq);
+		
 		List<MainDto> post = service.get_board_list(board_seq);
-		List<BoardDto> list = service.get_cate_list(post.get(0).getCategory_seq());
+		
+		List<BoardDto> list = service.get_cate_list(category_seq);
 
+		model.addAttribute("cate_seq", category_seq);
 		model.addAttribute("post", post);
 		model.addAttribute("list", list);
 				
 		return "list.tiles";
+	}
+	
+	@RequestMapping(value = "new_board",method= {RequestMethod.POST, RequestMethod.GET})
+	public String new_board(String board_name, Model model) {
+		return "newboard.tiles";
+	}
+	@RequestMapping(value = "add_board",method= {RequestMethod.POST, RequestMethod.GET})
+	public String add_board(BoardDto dto, Model model) {
+		service.add_board(dto);
+		return "redirect:/main";
 	}
 }

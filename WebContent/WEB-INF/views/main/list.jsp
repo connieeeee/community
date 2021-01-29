@@ -18,7 +18,7 @@
 		<div class="container list-box" id="story" style="display: none">
 			<c:forEach items="${list }" var="n">
 				<span>
-					<a href="board?board_seq=${n.board_seq }">${n.board_name }</a>
+					<a href="board?category_seq=${cate_seq }&board_seq=${n.board_seq }">${n.board_name}</a>
 				</span>
 			</c:forEach>
 		</div>
@@ -37,28 +37,28 @@
 					</tr>
 				</thead>
 				<tbody>
-						<c:if test="${not empty post }">
-							<c:forEach  items="${post}" var="list" varStatus="i">
-								<tr style="text-align: center;">
-									<fmt:parseDate var="parseRegDate" value="${list.wdate}" pattern="yyyy-MM-dd"/>
-									<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd"/>
-									<td>${i.count}</td>
-									<td>${list.board_name}</td>
-									<td>
-										<a href="#" onclick="goDetail(${list.post_seq})">${list.post_title}</a>
-									</td>
-									<td>${list.user_nickname}</td>
-									<td>${resultRegDt }</td>
-									<td>${list.readcount }</td>
-								</tr>
-							</c:forEach>
-						</c:if>
-						<c:if test="${empty post}">
-						<tr>
-							<td colspan="6" style="text-align: center;">
-								목록이 비었습니다
-							</td>
-						</tr>
+					<c:if test="${not empty post }">
+						<c:forEach  items="${post}" var="list" varStatus="i">
+							<tr style="text-align: center;">
+								<fmt:parseDate var="parseRegDate" value="${list.wdate}" pattern="yyyy-MM-dd"/>
+								<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd"/>
+								<td>${i.count}</td>
+								<td>${list.board_name}</td>
+								<td>
+									<a href="#" onclick="goDetail(${list.post_seq})">${list.post_title}</a>
+								</td>
+								<td>${list.user_nickname}</td>
+								<td>${resultRegDt }</td>
+								<td>${list.readcount }</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty post}">
+					<tr>
+						<td colspan="6" style="text-align: center;">
+							목록이 비었습니다
+						</td>
+					</tr>
 					</c:if>
 				</tbody>
 			</table>
@@ -86,7 +86,8 @@ function show_list(){
 		story.style.display='';
 		more.innerText='>접기'
 	} else {
-		story.style.display='none';more.innerText='>펼치기'
+		story.style.display='none';
+		more.innerText='>펼치기'
 	}
 }
 

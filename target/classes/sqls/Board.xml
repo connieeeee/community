@@ -15,6 +15,7 @@
 	WHERE BC.CATEGORY_SEQ = B.CATEGORY_SEQ
 	AND BC.CATEGORY_SEQ = #{category_seq }
 	AND B.BOARD_DELETE = '0'
+	AND B.BOARD_CONFIRM = '1'
 </select>
 
 <select id="get_board_post" resultType="bit.com.a.dto.MainDto" parameterType="java.lang.Integer">
@@ -61,5 +62,10 @@
 	AND B.BOARD_SEQ = #{board_seq }
 	ORDER BY P.WDATE DESC
 </select>
+
+<insert id="add_board" parameterType="bit.com.a.dto.BoardDto">
+	INSERT INTO BOARD
+	VALUES(BOARD_SEQ.NEXTVAL,#{category_seq },#{board_name}, #{board_inform}, '0', '0', #{user_seq})
+</insert>
 
 </mapper>

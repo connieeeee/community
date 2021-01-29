@@ -35,4 +35,9 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
+	@Override
+	public void add_board(BoardDto dto) {
+		session.insert(ns + "add_board", dto);
+	}
+
 }

@@ -29,4 +29,9 @@ public class BoardServiceImpl implements BoardService {
 	public List<MainDto> get_board_list(int board_seq) {
 		return dao.get_board_list(board_seq);
 	}
+
+	@Override
+	public void add_board(BoardDto dto) {
+		dao.add_board(dto);
+	}
 }

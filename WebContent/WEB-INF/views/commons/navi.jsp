@@ -81,7 +81,9 @@ if(session.getAttribute("id")!=null){
 					<li class="top_menu"><a href="/ProductManagementSystem/login/logout.jsp"><span>LOGOUT</span></a></li>	
 					<li class="top_menu"><a href="/ProductManagementSystem/myPage/myPage.jsp"><span>MYPAGE</span></a></li>
 					<li class="top_menu"><a href="/ProductManagementSystem/index.jsp"><span>HOME</span></a></li>
-						<li class="top_menu id">${id }님 환영합니다</li>	
+					<li class="top_menu id">${id }님 환영합니다</li>	
+					<li><input type="button" value="게시판만들기" id="addBtn"> </li>
+					<li><input type="button" value="관리자" id="adminBtn"> </li>
 				</ul>
 			</div>
 			
@@ -110,6 +112,14 @@ if(session.getAttribute("id")!=null){
 			function movePage(Num){
 				location.href = "list?category_seq="+Num;
 			}
+			$(function(){
+				$("#addBtn").on("click",function(){
+					location.href = "new_board";
+				});
+				$("#adminBtn").on("click",function(){
+					location.href = "admin";
+				});
+			})
 		</script>
 
     

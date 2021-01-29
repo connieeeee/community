@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="admin">
+
+<select id="get_all_board_list" resultType="bit.com.a.dto.AdminDto">
+	SELECT B.BOARD_SEQ,
+	       B.CATEGORY_SEQ,
+	       BC.CATEGORY_NAME,
+	       B.BOARD_NAME,
+	       B.BOARD_INFORM,
+	       B.BOARD_CONFIRM,
+	       B.BOARD_DELETE,
+	       B.USER_SEQ,
+	       U.USER_NICKNAME
+	FROM BOARD B, USER_TABLE U, BOARD_CATEGORY BC
+	WHERE B.CATEGORY_SEQ = BC.CATEGORY_SEQ
+	AND B.USER_SEQ = U.USER_SEQ
+</select>
+<update id="board_confirm" parameterType="int">
+		UPDATE BOARD SET
+		BOARD_CONFIRM = 1
+		WHERE BOARD_SEQ = #{board_seq }
+	</update>
+</mapper>

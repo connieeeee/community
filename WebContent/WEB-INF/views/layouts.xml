@@ -39,17 +39,24 @@
 	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
 </definition>
 
-<definition name="orderbook.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+<definition name="newboard.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
 	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
 	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
-	<put-attribute name="main" value="/WEB-INF/views/main/orderbook.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/main/newboard.jsp"/>	
 	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
 </definition>
 
-<definition name="total.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+<definition name="admin-main.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
 	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
 	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
-	<put-attribute name="main" value="/WEB-INF/views/main/total.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/admin/admin-main.jsp"/>	
+	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
+</definition>
+
+<definition name="board_setting.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="navi" value="/WEB-INF/views/commons/navi.jsp"/>	
+	<put-attribute name="header" value="/WEB-INF/views/commons/header.jsp"/>	
+	<put-attribute name="main" value="/WEB-INF/views/admin/board_setting.jsp"/>	
 	<put-attribute name="footer" value="/WEB-INF/views/commons/footer.jsp"/>
 </definition>
 </tiles-definitions>

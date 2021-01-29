@@ -2,44 +2,32 @@ package bit.com.a.dto;
 
 import java.io.Serializable;
 
-public class BoardDto implements Serializable {
+public class AdminDto implements Serializable {
 
 	private int board_seq;
 	private int category_seq;
+	private String category_name;
 	private String board_name;
 	private String board_inform;
 	private int board_confirm;
 	private int board_delete;
 	private int user_seq;
+	private String user_nickname;
 	
-	
-	private String category_name;
-	
-	public BoardDto() {}
+	public AdminDto() {}
 
-	public BoardDto(int board_seq, int category_seq, String board_name, String board_inform, int board_confirm,
-			int board_delete, int user_seq, String category_name) {
+	public AdminDto(int board_seq, int category_seq, String category_name, String board_name, String board_inform,
+			int board_confirm, int board_delete, int user_seq, String user_nickname) {
 		super();
 		this.board_seq = board_seq;
 		this.category_seq = category_seq;
-		this.board_name = board_name;
-		this.board_inform = board_inform;
-		this.board_confirm = board_confirm;
-		this.board_delete = board_delete;
-		this.user_seq = user_seq;
 		this.category_name = category_name;
-	}
-
-	public BoardDto(int board_seq, int category_seq, String board_name, String board_inform, int board_confirm,
-			int board_delete, int user_seq) {
-		super();
-		this.board_seq = board_seq;
-		this.category_seq = category_seq;
 		this.board_name = board_name;
 		this.board_inform = board_inform;
 		this.board_confirm = board_confirm;
 		this.board_delete = board_delete;
 		this.user_seq = user_seq;
+		this.user_nickname = user_nickname;
 	}
 
 	public int getBoard_seq() {
@@ -56,6 +44,14 @@ public class BoardDto implements Serializable {
 
 	public void setCategory_seq(int category_seq) {
 		this.category_seq = category_seq;
+	}
+
+	public String getCategory_name() {
+		return category_name;
+	}
+
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
 	}
 
 	public String getBoard_name() {
@@ -98,14 +94,13 @@ public class BoardDto implements Serializable {
 		this.user_seq = user_seq;
 	}
 
-	public String getCategory_name() {
-		return category_name;
+	public String getUser_nickname() {
+		return user_nickname;
 	}
 
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
 	
-
-
+	
 }
