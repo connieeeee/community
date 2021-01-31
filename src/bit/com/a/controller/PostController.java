@@ -54,7 +54,7 @@ public class PostController {
 		List<PostDto> list = service.get_all_board_list(category_seq);
 
 		model.addAttribute("list", list);
-		model.addAttribute("name", list.get(1).getCategory_name());
+		model.addAttribute("name", list.get(0).getCategory_name());
 		model.addAttribute("category_seq", category_seq);
 		
 		return "write.tiles";

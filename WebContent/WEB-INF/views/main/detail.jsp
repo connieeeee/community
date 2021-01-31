@@ -3,13 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
+<style>
+a:link { color: black; text-decoration: none;}
+</style>
 
 <fmt:parseDate var="parseRegDate" value="${post.wdate}" pattern="yyyy-MM-dd HH:mm"/>
 
 <fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd HH:mm"/>
 
-<div class="container">
+<div class="container text">
 	<div>
 		<h2><a href="#">${post.category_name }</a>
 			>

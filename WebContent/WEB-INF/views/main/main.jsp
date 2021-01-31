@@ -4,16 +4,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-	a:link { color: black; }
-	a:visited { color: darkgray; }
-	.wrap-table-1{
-		float: left;
-		width: 50%;
-	}
-	.wrap-table-2{
-		float: right;
-		width: 50%;
-	}
+a:link { color: black; text-decoration: none;}
+a:visited { color: darkgray; }
+
+.wrap-table-1{
+	float: left;
+	width: 50%;
+}
+.wrap-table-2{
+	float: right;
+	width: 50%;
+}
 </style>
     
 <div class="container">

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.com.a.dto.AdminDto;
 import bit.com.a.service.AdminService;
@@ -31,11 +32,12 @@ public class AdminController {
 		model.addAttribute("list", list);
 		return"board_setting.tiles";
 	}
-
+	
+	@ResponseBody
 	@RequestMapping(value = "board_confirm",method= {RequestMethod.POST, RequestMethod.GET})
-	public void board_confirm(int board_seq, Model model) {
-		System.out.println("board_confirm: " + board_seq);
-		System.out.println("board_confirm");
+	public void board_confirm(String a, int board_seq, Model model) {
+		System.out.println(a);
+		service.board_conf_del(a, board_seq);
 	}
 	
 }

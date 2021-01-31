@@ -26,14 +26,14 @@
 								<td>${list.board_inform}</td>
 								<td>
 									<c:if test="${list.board_confirm eq 0 }">
-										<input type="button" value="확정" onclick="confirm(${list.board_seq})">
+										<input type="button" value="승인" onclick="confirm(${list.board_seq},'c')">
 									</c:if>
 									<c:if test="${list.board_confirm eq 1 }">
 										완료
 									</c:if>
 								</td>
 								<td>
-									<input type="button" value="삭제">
+									<input type="button" value="삭제" onclick="confirm(${list.board_seq},'d')">
 								</td>
 								<td>${list.user_nickname }</td>
 							</tr>
@@ -50,14 +50,17 @@
 	</table>
 </div>
 <script type="text/javascript">
-	function(num){
+	function confirm(num,alpha){
+		console.log(alpha);
 		$.ajax({
-			url:"board_confirm",
+			url:"./board_confirm",
 			type:"get",
-			data:{"board_seq":num},
+			data:{"board_seq":num,
+					"a":alpha},
 			async:false,
 			success:function(){
 				alert("승인했습니다");
+				location.reload();
 			},
 			error:function(){}
 		});

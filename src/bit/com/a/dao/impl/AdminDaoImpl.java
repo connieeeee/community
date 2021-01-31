@@ -23,4 +23,16 @@ public class AdminDaoImpl implements AdminDao {
 		return list;
 	}
 
+	@Override
+	public void board_conf_del(String a, int board_seq) {
+
+		if(a.equals("c")) {
+			System.out.println("dao impl c");
+			session.update(ns + "board_confirm", board_seq);
+		}else if(a.equals("d")) {
+			System.out.println("dao impl d");
+			session.update(ns + "board_delete", board_seq);			
+		}
+	}
+
 }

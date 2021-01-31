@@ -7,3 +7,11 @@
 <link rel="stylesheet" href="/resources/css/bootstrap.css">
 <link rel="icon" type="image/ico" href="/resources/img/favicon.ico" />
 <link rel="apple-touch-icon" href="/resources/img/favicon.ico" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+<style>
+.text{
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 12pt;
+}
+</style>

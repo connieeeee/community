@@ -56,6 +56,7 @@ public class BoardController {
 	public String new_board(String board_name, Model model) {
 		return "newboard.tiles";
 	}
+	
 	@RequestMapping(value = "add_board",method= {RequestMethod.POST, RequestMethod.GET})
 	public String add_board(BoardDto dto, Model model) {
 		service.add_board(dto);

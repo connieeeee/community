@@ -20,4 +20,10 @@ public class AdminServiceImpl implements AdminService {
 		return dao.get_all_board_list();
 	}
 
+	@Override
+	public void board_conf_del(String a, int board_seq) {
+		System.out.println("service imple" + a);
+		dao.board_conf_del(a, board_seq);
+	}
+
 }

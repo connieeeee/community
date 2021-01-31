@@ -18,10 +18,19 @@
 	FROM BOARD B, USER_TABLE U, BOARD_CATEGORY BC
 	WHERE B.CATEGORY_SEQ = BC.CATEGORY_SEQ
 	AND B.USER_SEQ = U.USER_SEQ
+	AND B.BOARD_DELETE = '0'
 </select>
+
 <update id="board_confirm" parameterType="int">
-		UPDATE BOARD SET
-		BOARD_CONFIRM = 1
-		WHERE BOARD_SEQ = #{board_seq }
-	</update>
+	UPDATE BOARD SET
+	BOARD_CONFIRM = 1
+	WHERE BOARD_SEQ = #{board_seq }
+</update>
+
+<update id="board_delete" parameterType="int">
+	UPDATE BOARD SET
+	BOARD_DELETE = 1
+	WHERE BOARD_SEQ = #{board_seq }
+</update>
+
 </mapper>
