@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import bit.com.a.dao.BoardDao;
 import bit.com.a.dto.BoardDto;
+import bit.com.a.dto.BoardParam;
 import bit.com.a.dto.MainDto;
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -30,14 +31,19 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<MainDto> get_board_list(int board_seq) {
-		List<MainDto> list = session.selectList(ns + "get_board_list", board_seq);
+	public List<MainDto> get_board_list(BoardParam param) {
+		List<MainDto> list = session.selectList(ns + "get_board_list", param);
 		return list;
 	}
 
 	@Override
 	public void add_board(BoardDto dto) {
 		session.insert(ns + "add_board", dto);
+	}
+
+	@Override
+	public int get_board_count(BoardParam param) {
+		return session.selectOne(ns + "get_board_count", param);
 	}
 
 }

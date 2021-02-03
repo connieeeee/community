@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import bit.com.a.dto.BoardDto;
+import bit.com.a.dto.BoardParam;
 import bit.com.a.dto.MainDto;
 import bit.com.a.dto.PostDto;
 import bit.com.a.service.BoardService;
@@ -37,18 +38,36 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "board",method= {RequestMethod.POST, RequestMethod.GET})
-	public String board(int category_seq, int board_seq, Model model) {
+	public String board(BoardParam param, Model model) {
 				
-		System.out.println(board_seq);
 		
-		List<MainDto> post = service.get_board_list(board_seq);
+		List<BoardDto> list = service.get_cate_list(param.getCategory_seq());
+		List<MainDto> post = service.get_board_list(param);
 		
-		List<BoardDto> list = service.get_cate_list(category_seq);
+		// paging 처리
+		int sn = param.getPageNumber();		// 현재 페이지
+		int start = sn * param.getRecordCountPerPage() + 1;	// 1 11 21
+		int end = (sn + 1) * param.getRecordCountPerPage();	// 10 20 30
+		
+		param.setStart(start);
+		param.setEnd(end);
+				
+		// 글의 총수
+		int totalRecordCount = service.get_board_count( param );
+		
 
-		model.addAttribute("cate_seq", category_seq);
 		model.addAttribute("post", post);
 		model.addAttribute("list", list);
 				
+		
+		model.addAttribute("pageNumber", sn);
+		model.addAttribute("pageCountPerScreen", 10);
+		model.addAttribute("recordCountPerPage", param.getRecordCountPerPage());
+		model.addAttribute("totalRecordCount", totalRecordCount);
+		
+		model.addAttribute("choice", param.getChoice());
+		model.addAttribute("searchWord", param.getSearchWord());
+		
 		return "list.tiles";
 	}
 	

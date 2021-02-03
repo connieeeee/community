@@ -51,17 +51,57 @@
 	ORDER BY P.WDATE DESC
 </select>
 
-<select id="get_board_list" resultType="bit.com.a.dto.MainDto" parameterType="java.lang.Integer">
-	SELECT P.POST_SEQ, B.BOARD_SEQ, P.USER_SEQ, P.POST_TITLE,
+<select id="get_board_list" parameterType="bit.com.a.dto.BoardParam"
+							resultType="bit.com.a.dto.MainDto">
+							
+	SELECT *
+	FROM ( SELECT ROW_NUMBER()OVER(ORDER BY P.WDATE DESC) AS RNUM,
+            P.POST_SEQ, B.BOARD_SEQ, P.USER_SEQ, P.POST_TITLE,
 	        P.POST_CONTENT, P.POST_IMAGE, P.WDATE, BC.CATEGORY_NAME,
 		      UT.USER_NICKNAME, P.POST_DELETE, B.BOARD_NAME, P.READCOUNT,
 		      	BC.CATEGORY_SEQ
-	FROM POST P, BOARD B, BOARD_CATEGORY BC, USER_TABLE UT
+            FROM POST P, BOARD B, BOARD_CATEGORY BC, USER_TABLE UT
 	WHERE P.BOARD_SEQ = B.BOARD_SEQ
 	AND B.CATEGORY_SEQ= BC.CATEGORY_SEQ
-	AND B.BOARD_SEQ = #{board_seq }
+			<if test="choice != null and choice != ''
+				and searchWord != null and searchWord != ''">
+				<if test="choice == 'title'">
+					AND P.POST_TITLE LIKE '%'||#{searchWord}||'%'
+				</if>
+				<if test="choice == 'content'">
+					AND P.POST_CONTENT LIKE '%'||#{searchWord}||'%'
+				</if>
+				<if test="choice == 'writer'">
+					AND UT.USER_NICKNAME LIKE '%'||#{searchWord}||'%'
+				</if>	
+			</if>	
+    AND B.BOARD_SEQ = #{board_seq }
 	ORDER BY P.WDATE DESC
+    ) A
+    WHERE RNUM BETWEEN  #{start} AND #{end} 	
 </select>
+
+<!-- 글의 총수 -->
+<select id="get_board_count" parameterType="bit.com.a.dto.BoardParam"
+							resultType="java.lang.Integer">
+	SELECT NVL(COUNT(*), 0) AS CNT
+	FROM POST P, USER_TABLE UT
+	WHERE P.USER_SEQ = UT.USER_SEQ
+	AND 1=1
+		<if test="choice != null and choice != ''
+			and searchWord != null and searchWord != ''">
+			<if test="choice == 'title'">
+				AND P.POST_TITLE LIKE '%'||#{searchWord}||'%'
+			</if>
+			<if test="choice == 'content'">
+				AND P.POST_CONTENT LIKE '%'||#{searchWord}||'%'
+			</if>
+			<if test="choice == 'writer'">
+				AND UT.USER_NICKNAME LIKE '%'||#{searchWord}||'%'
+			</if>	
+		</if>	
+</select>
+
 
 <insert id="add_board" parameterType="bit.com.a.dto.BoardDto">
 	INSERT INTO BOARD

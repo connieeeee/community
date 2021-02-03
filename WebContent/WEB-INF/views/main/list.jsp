@@ -15,6 +15,29 @@
 }
 </style>
 
+<%
+String choice = (String)request.getAttribute("choice");
+if(choice == null) choice = "";
+
+String searchWord = (String)request.getAttribute("searchWord");
+if(searchWord == null) searchWord = "";
+
+if(searchWord.equals("")){
+	choice = "";
+}
+%>
+
+<script>
+let choice = "<%=choice %>";
+let searchWord = "<%=searchWord %>";
+$(document).ready(function(){
+	$("#_choice").val(choice);
+
+	// $("#_searchWord").val(searchWord);
+	document.frmForm1.searchWord.value = searchWord;
+});
+</script>
+
 <div class="container">
 	<div class="container">
 		<span id="more" style="CURSOR: hand" onclick="show_list()">
@@ -77,21 +100,58 @@
 		</div>
 	</div>
 	<div class="container">
-		<div>
-			<select>
-				<option>선택하세요</option>
-			</select>
+		<!-- paging -->
+		<div id="paging_wrap">
+			<jsp:include page="/WEB-INF/views/main/paging.jsp" flush="false">
+				<jsp:param name="totalRecordCount" value="${totalRecordCount }"/>
+				<jsp:param name="pageNumber" value="${pageNumber }"/>
+				<jsp:param name="pageCountPerScreen" value="${pageCountPerScreen }"/>
+				<jsp:param name="recordCountPerPage" value="${recordCountPerPage }"/>	
+			</jsp:include>
 		</div>
+				 
+	</div>
+	<div class="container">
+		<form action="" name="frmForm1" id="_frmFormSearch" method="get">
+
+			<table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
+			<tr>
+				<td>검색</td>
+				<td style="padding-left: 5px">
+					<select id="_choice" name="choice">
+						<option value="" selected="selected">선택</option>
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+						<option value="writer">작성자</option>		
+					</select>
+				</td>
+				<td style="padding-left: 5px">
+					<input type="text" id="_searchWord" name="searchWord">		
+				</td>
+				<td style="padding-left: 5px">
+					<span class="button blue">
+						<button type="button" id="btnSearch">검색</button>
+					</span>
+				</td>
+			</tr>
+			</table>
+			
+			<!-- 추가 기입 -->
+			<input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
+			
+			<input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?0:recordCountPerPage }">
+
+		</form>
 		<div>
 			<input type="text">
 			<input type="button" class="btn btn-primary" value="검색">
 		</div>
 		<div>
 			<c:if test="${empty list }">
-				<input type="button" value="작성" onclick="goPage('00')">
+				<input type="button" value="작성" onclick="go_write('00')">
 			</c:if>
 			<c:if test="${not empty list }">
-				<input type="button" value="작성" onclick="goPage(${cate_seq})">
+				<input type="button" value="작성" onclick="go_write(${cate_seq})">
 			</c:if>
 		</div>
 	</div>
@@ -108,7 +168,13 @@ function show_list(){
 	}
 }
 
-function goPage(num){
+
+function goPage( pageNumber ){
+	$("#_pageNumber").val( pageNumber );
+	$("#_frmFormSearch").attr("action", "board").submit();	
+}
+
+function go_write(num){
 	if(num == '00'){
 		alert("게시판을 만들어주세요");
 	}else{
@@ -119,5 +185,10 @@ function goPage(num){
 function goDetail(num){
 	location.href="detail?post_seq="+num;
 }
+
+$("#btnSearch").click(function(){
+	//alert('btnSearch');
+	$("#_frmFormSearch").attr("action", "board").submit();	
+});
 
 </script>

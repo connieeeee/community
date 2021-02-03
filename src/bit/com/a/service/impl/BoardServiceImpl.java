@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import bit.com.a.dao.BoardDao;
 import bit.com.a.dto.BoardDto;
+import bit.com.a.dto.BoardParam;
 import bit.com.a.dto.MainDto;
 import bit.com.a.service.BoardService;
 @Service
@@ -26,12 +27,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<MainDto> get_board_list(int board_seq) {
-		return dao.get_board_list(board_seq);
+	public List<MainDto> get_board_list(BoardParam param) {
+		return dao.get_board_list(param);
 	}
 
 	@Override
 	public void add_board(BoardDto dto) {
 		dao.add_board(dto);
+	}
+
+	@Override
+	public int get_board_count(BoardParam param) {
+		return dao.get_board_count(param);
 	}
 }
