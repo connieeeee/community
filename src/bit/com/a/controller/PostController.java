@@ -100,7 +100,7 @@ public class PostController {
 				
 		m.addAttribute("category_seq", dto.getCategory_seq());
 		
-		return "redirect:/list";
+		return "redirect:/board";
 	}
 
 

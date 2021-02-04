@@ -73,19 +73,21 @@ $(document).ready(function(){
 				</thead>
 				<tbody>
 					<c:if test="${not empty post }">
-						<c:forEach  items="${post}" var="p" varStatus="i">
+					  	<c:set var="num" value="${searchVo.totalCount - ((searchVo.curPage-1) * 10) }"/>
+						<c:forEach  items="${post}" var="p" varStatus="status">
 							<tr style="text-align: center;">
 								<fmt:parseDate var="parseRegDate" value="${p.wdate}" pattern="yyyy-MM-dd"/>
 								<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd"/>
-								<td>${i.count}</td>
+								<td>${num }</td>
 								<td>${p.board_name}</td>
 								<td>
 									<a href="#" class="text post-list" onclick="goDetail(${p.post_seq})">${p.post_title}</a>
 								</td>
 								<td>${p.user_nickname}</td>
-								<td>${resultRegDt }</td>
+								<td style="font-size: 10pt;">${resultRegDt }</td>
 								<td>${p.readcount }</td>
 							</tr>
+							<c:set var="num" value="${num-1 }"></c:set>
 						</c:forEach>
 					</c:if>
 					<c:if test="${empty post}">
@@ -119,7 +121,8 @@ $(document).ready(function(){
 				<td>검색</td>
 				<td style="padding-left: 5px">
 					<select id="_choice" name="choice">
-						<option value="title" selected="selected">제목</option>
+						<option value="" selected="selected">선택</option>
+						<option value="title">제목</option>
 						<option value="content">내용</option>
 						<option value="writer">작성자</option>		
 					</select>
@@ -187,8 +190,16 @@ function goDetail(num){
 
 $("#btnSearch").click(function(){
 	//alert('btnSearch');
-	
-	$("#_frmFormSearch").attr("action", "board").submit();	
+	let n = $('select[id=_choice]').val(); 
+	let s = $("#_searchWord").val();
+
+	if(s == ""){
+		alert("검색어 값은 필수입니다");
+	}else if(n != ""){ 
+		$("#_frmFormSearch").attr("action", "board").submit();
+	}else if(n == ""){
+		 $('#_choice').first().focus();
+	}
 });
 
 </script>
