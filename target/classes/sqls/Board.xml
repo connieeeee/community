@@ -75,7 +75,10 @@
 					AND UT.USER_NICKNAME LIKE '%'||#{searchWord}||'%'
 				</if>	
 			</if>	
+    <if test="board_seq != null and board_seq != ''">
     AND B.BOARD_SEQ = #{board_seq }
+    </if>
+    AND B.CATEGORY_SEQ = #{category_seq}
 	ORDER BY P.WDATE DESC
     ) A
     WHERE RNUM BETWEEN  #{start} AND #{end} 	

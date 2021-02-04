@@ -119,8 +119,7 @@ $(document).ready(function(){
 				<td>검색</td>
 				<td style="padding-left: 5px">
 					<select id="_choice" name="choice">
-						<option value="" selected="selected">선택</option>
-						<option value="title">제목</option>
+						<option value="title" selected="selected">제목</option>
 						<option value="content">내용</option>
 						<option value="writer">작성자</option>		
 					</select>
@@ -188,6 +187,7 @@ function goDetail(num){
 
 $("#btnSearch").click(function(){
 	//alert('btnSearch');
+	
 	$("#_frmFormSearch").attr("action", "board").submit();	
 });
 

@@ -111,7 +111,7 @@ if(session.getAttribute("id")!=null){
 		</header>
 		<script type="text/javascript">
 			function movePage(Num){
-				location.href = "list?category_seq="+Num;
+				location.href = "board?category_seq="+Num;
 			}
 			$(function(){
 				$("#addBtn").on("click",function(){

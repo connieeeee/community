@@ -31,6 +31,12 @@ public class BoardParam implements Serializable {
 		this.end = end;
 	}
 
+	public BoardParam(int board_seq, int category_seq) {
+		super();
+		this.board_seq = board_seq;
+		this.category_seq = category_seq;
+	}
+
 	public int getBoard_seq() {
 		return board_seq;
 	}

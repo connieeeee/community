@@ -23,7 +23,7 @@ public class BoardController {
 	BoardService service;
 
 	
-	@RequestMapping(value = "list",method= {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "list1",method= {RequestMethod.POST, RequestMethod.GET})
 	public String list(int category_seq, Model model) {
 		
 		List<BoardDto> list = service.get_cate_list(category_seq);
@@ -39,11 +39,15 @@ public class BoardController {
 	
 	@RequestMapping(value = "board",method= {RequestMethod.POST, RequestMethod.GET})
 	public String board(BoardParam param, Model model) {
-				
+		
+		System.out.println("board: board " + param.getBoard_seq() + "; cate " + param.getCategory_seq());
+
 		
 		List<BoardDto> list = service.get_cate_list(param.getCategory_seq());
 		List<MainDto> post = service.get_board_list(param);
 		
+//		System.out.println("board: title " + post.get(0).getPost_title());
+
 		// paging 처리
 		int sn = param.getPageNumber();		// 현재 페이지
 		int start = sn * param.getRecordCountPerPage() + 1;	// 1 11 21
@@ -56,6 +60,7 @@ public class BoardController {
 		int totalRecordCount = service.get_board_count( param );
 		
 
+		model.addAttribute("cate_seq", param.getCategory_seq());
 		model.addAttribute("post", post);
 		model.addAttribute("list", list);
 				
